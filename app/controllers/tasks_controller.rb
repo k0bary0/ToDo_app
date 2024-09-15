@@ -14,10 +14,12 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    # @task.user_id = 1
 
     if @task.save
-      redirect_to @task
+      redirect_to @task, notice: 'タスクが作成されました！'
     else
+      flash.now[:alert] = @task.errors.full_messages.join(", ")
       render :new, status: :unprocessable_entity
     end
   end
