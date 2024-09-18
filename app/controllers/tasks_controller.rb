@@ -14,7 +14,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    # @task.user_id = 1
+    @task.user_id = 1
 
     if @task.save
       redirect_to @task, notice: 'タスクが作成されました！'
