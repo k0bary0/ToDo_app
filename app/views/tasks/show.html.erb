@@ -4,8 +4,10 @@
 
 <ul>
   <li><%= link_to "Edit", edit_task_path(@task) %></li>
-  <li><%= link_to "destroy", task_path(@task), data: {
+  <li><%= link_to "destroy", user_path(current_user), data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
                   } %></li>
 </ul>
+
+<div><%= link_to "back to list", user_path(current_user) %></div>

@@ -9,3 +9,15 @@
     </section>
   </aside>
 </div>
+
+<h1>Tasks</h1>
+
+<ul>
+  <% @user.tasks.each do |task| %>
+    <li>
+      <%= link_to task.title, task %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "New Task", new_task_path %>

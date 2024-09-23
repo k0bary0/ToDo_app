@@ -5,6 +5,7 @@ ruby "3.2.4"
 
 gem "rails",           "7.1"
 gem "bcrypt",          "3.1.18"
+gem "bootstrap-sass",  "3.4.1"
 gem "sassc-rails",     "2.1.2"
 gem "sprockets-rails", "3.4.2"
 gem "importmap-rails", "1.1.5"

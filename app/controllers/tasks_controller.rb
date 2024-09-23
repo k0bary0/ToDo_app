@@ -14,8 +14,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    @task.user_id = 1
-
+    @task.user = current_user
     if @task.save
       redirect_to @task, notice: 'タスクが作成されました！'
     else
@@ -40,9 +39,13 @@ class TasksController < ApplicationController
 
   def destroy
     @task = Task.find(params[:id])
-    @task.destroy
+    if @task.destroy
+      redirect_to user_path(current_user), status: :see_other
+    else
+      flash.now[:alert] = @task.errors.full_messages.join(", ")
+      render :new, status: :unprocessable_entity
+    end
 
-    redirect_to root_path, status: :see_other
   end
 
   private
