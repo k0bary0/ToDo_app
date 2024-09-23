@@ -16,7 +16,8 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.user = current_user
     if @task.save
-      redirect_to @task, notice: 'タスクが作成されました！'
+      flash[:success] = "Thd task has been successfully created."
+      redirect_to @task
     else
       flash.now[:alert] = @task.errors.full_messages.join(", ")
       render :new, status: :unprocessable_entity

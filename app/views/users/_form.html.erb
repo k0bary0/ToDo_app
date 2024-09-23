@@ -1,38 +1,54 @@
-<%= form_with model: user, local: true do |form| %>
-    <div>
-      <%= form.label :name %><br>
-      <%= form.text_field :name %>
-      <% user.errors.full_messages_for(:name).each do |message| %>
-        <div><%= message %></div>
-      <% end %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+    <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-danger">
+        <h2>The form contains <%= pluralize(@user.errors.count, "error") %></h2>
+      </div>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
+    <% end %>
+
+    <%= form_with model: user, local: true do |form| %>
+      <div>
+        <%= form.label :name %>
+        <%= form.text_field :name, class: 'form-control' %>
+        <% user.errors.full_messages_for(:name).each do |message| %>
+          <div><%= message %></div>
+        <% end %>
+      </div>
   
-    <div>
-      <%= form.label :email %><br>
-      <%= form.text_area :email %><br>
-      <% user.errors.full_messages_for(:email).each do |message| %>
-        <div><%= message %></div>
-      <% end %>
-    </div>
+      <div>
+        <%= form.label :email %>
+        <%= form.text_area :email, class: 'form-control' %>
+        <% user.errors.full_messages_for(:email).each do |message| %>
+          <div><%= message %></div>
+        <% end %>
+      </div>
 
-    <div>
-      <%= form.label :password %><br>
-      <%= form.text_area :password %><br>
-      <% user.errors.full_messages_for(:password).each do |message| %>
-        <div><%= message %></div>
-      <% end %>
-    </div>
+      <div>
+        <%= form.label :password %>
+        <%= form.text_area :password, class: 'form-control' %>
+        <% user.errors.full_messages_for(:password).each do |message| %>
+          <div><%= message %></div>
+        <% end %>
+      </div>
   
 
-    <div>
-      <%= form.label :password_confirmation %><br>
-      <%= form.text_area :password_confirmation %><br>
-      <% user.errors.full_messages_for(:password_confirmation).each do |message| %>
-        <div><%= message %></div>
-      <% end %>
-    </div>
+      <div>
+        <%= form.label :password_confirmation %>
+        <%= form.text_area :password_confirmation, class: 'form-control' %>
+        <% user.errors.full_messages_for(:password_confirmation).each do |message| %>
+          <div><%= message %></div>
+        <% end %>
+      </div>
 
-    <div>
-      <%= form.submit %>
-    </div>
-<% end %>
+      <div>
+        <%= form.submit "Create my account", class: "btn btn-primary" %>
+      </div>
+    <% end %>

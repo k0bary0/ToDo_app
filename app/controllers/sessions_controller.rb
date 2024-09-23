@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:session][:password])
       reset_session
-      flash[:success] = "Welcome to the Todo list"
+      flash[:success] = "You have logged in successfully."
       log_in user
       redirect_to user
     else

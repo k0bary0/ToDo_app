@@ -8,18 +8,20 @@
       </h1>
     </section>
   </aside>
+
+  <div class="center jumbotron">
+    <h1>Todo List</h1>
+      <ul>
+        <% @user.tasks.each do |task| %>
+          <ul>
+            <%= link_to task.title, task %>
+          </ul>
+        <% end %>
+      </ul>
+      <ul><%= link_to "New Task", new_task_path, class: "btn btn-lg btn-primary" %></ul>
+      <ul><%= link_to "Log out", login_path, class: "btn btn-lg btn-primary" %></ul>
+  </div>
 </div>
 
-<h1>Tasks</h1>
 
-<ul>
-  <% @user.tasks.each do |task| %>
-    <li>
-      <%= link_to task.title, task %>
-    </li>
-  <% end %>
-</ul>
 
-<p><%= link_to "New Task", new_task_path %></p>
-
-<p><%= link_to "Log out", login_path %></p>

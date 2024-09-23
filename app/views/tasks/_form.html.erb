@@ -1,21 +1,39 @@
-<%= form_with model: task, local: true do |form| %>
-  <div>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-    <% task.errors.full_messages_for(:title).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
 
-  <div>
-    <%= form.label :description %><br>
-    <%= form.text_area :description %><br>
-    <% task.errors.full_messages_for(:description).each do |message| %>
-      <div><%= message %></div>
+    <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-danger">
+        <h2>The form contains <%= pluralize(@task.errors.count, "error") %></h2>
+      </div>
+      <ul>
+        <% @task.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+      </div>
     <% end %>
-  </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
+    <%= form_with model: task, local: true do |form| %>
+      <div>
+        <%= form.label :title %><br>
+        <%= form.text_field :title, class: 'form-control' %>
+        <% task.errors.full_messages_for(:title).each do |message| %>
+          <div><%= message %></div>
+        <% end %>
+      </div>
+
+      <div>
+        <%= form.label :description %><br>
+        <%= form.text_area :description, class: 'form-control' %><br>
+        <% task.errors.full_messages_for(:description).each do |message| %>
+          <div><%= message %></div>
+        <% end %>
+      </div>
+
+     <div>
+       <%= form.submit "Create task", class: "btn btn-primary" %>
+       <%= link_to "back to list", user_path(current_user) %>
+     </div>
+
 <% end %>
