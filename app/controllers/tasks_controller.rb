@@ -39,12 +39,8 @@ class TasksController < ApplicationController
 
   def destroy
     @task = Task.find(params[:id])
-    if @task.destroy
-      redirect_to user_path(current_user), status: :see_other
-    else
-      flash.now[:alert] = @task.errors.full_messages.join(", ")
-      render :new, status: :unprocessable_entity
-    end
+    @task.destroy
+    redirect_to user_path(current_user), status: :see_other
 
   end
 
