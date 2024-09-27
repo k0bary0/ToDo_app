@@ -44,7 +44,7 @@ class TasksController < ApplicationController
   private
 
     def set_task
-      @task = Task.find(params[:id])
+      @task = current_user.tasks.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       flash[:alert] = "The task can not be found."
       redirect_to tasks_path

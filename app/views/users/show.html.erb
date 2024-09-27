@@ -1,24 +1,29 @@
 <% provide(:title, @user.name) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-  </aside>
+<h1>Todo List</h1>
+<div class="container">
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <h1>
+          <%= gravatar_for @user %>
+          <%= @user.name %>
+        </h1>
+      </section>
+    </aside>
+  </div>
 
-  <div class="center jumbotron">
-    <h1>Todo List</h1>
+  <div class="row row-cols-4">
+    <div class="col">
       <ul>
         <% @user.tasks.each do |task| %>
           <ul>
-            <%= link_to task.title, task %>
+            <%= link_to "・" + task.title, task %>
           </ul>
         <% end %>
       </ul>
       <ul><%= link_to "New Task", new_task_path, class: "btn btn-lg btn-primary" %></ul>
       <ul><%= link_to "Log out", login_path, class: "btn btn-lg btn-primary" %></ul>
+    </div>
   </div>
+
 </div>

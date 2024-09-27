@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show]
 
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page], per_page: 10)
   end
 
   def show; end
@@ -27,13 +27,19 @@ class UsersController < ApplicationController
 
     def set_user
       @user = User.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      flash[:alert] = "The user can not be found."
-      redirect_to users_path
-    end
+
+      unless current_user == @user
+        flash[:alert] = "You are not authorized to view this user"
+        redirect_to login_path
+      end
+
+      rescue ActiveRecord::RecordNotFound
+        flash[:alert] = "The user can not be found."
+       redirect_to users_path
+      end
+    
 
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
-    
 end
