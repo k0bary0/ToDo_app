@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show]
 
+  PER_PAGE = 10
+
   def index
-    @users = User.paginate(page: params[:page], per_page: 10)
+    @users = User.paginate(page: params[:page], per_page: PER_PAGE)
   end
 
   def show; end
@@ -32,11 +34,7 @@ class UsersController < ApplicationController
         flash[:alert] = "You are not authorized to view this user"
         redirect_to login_path
       end
-
-      rescue ActiveRecord::RecordNotFound
-        flash[:alert] = "The user can not be found."
-       redirect_to users_path
-      end
+    end
     
 
     def user_params

@@ -16,14 +16,13 @@
     <div class="col">
       <ul>
         <% @user.tasks.each do |task| %>
-          <ul>
-            <%= link_to "・" + task.title, task %>
-          </ul>
+          <li>
+            <%= link_to task.title, task %>
+          </li>
         <% end %>
       </ul>
       <ul><%= link_to "New Task", new_task_path, class: "btn btn-lg btn-primary" %></ul>
       <ul><%= link_to "Log out", login_path, class: "btn btn-lg btn-primary" %></ul>
     </div>
   </div>
-
 </div>
