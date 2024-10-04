@@ -7,5 +7,7 @@ class CreateTasks < ActiveRecord::Migration[7.1]
 
       t.timestamps
     end
+
+    add_foreign_key :tasks, :users
   end
 end
