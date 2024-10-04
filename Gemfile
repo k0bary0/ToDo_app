@@ -14,7 +14,6 @@ gem "importmap-rails",         "1.1.5"
 gem "turbo-rails",             "1.4.0"
 gem "stimulus-rails",          "1.2.1"
 gem "jbuilder",                "2.11.5"
-gem "puma"
 gem "bootsnap",                "1.16.0", require: false
 gem "sqlite3",                 "1.6.1"
 
@@ -41,7 +40,7 @@ group :test do
 end
 
 group :production do
-  gem "pg", "1.2.3"
+  gem "pg", "1.5.6"
 end
 
 # Windows ではタイムゾーン情報用の tzinfo-data gem を含める必要があります
